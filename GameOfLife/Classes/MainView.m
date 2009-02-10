@@ -34,6 +34,7 @@
 }
 
 - (void)startTimer {
+	[self stopTimer];
 	timer = [NSTimer scheduledTimerWithTimeInterval: .2
 											 target: self
 										   selector: @selector(playGame)
@@ -46,6 +47,13 @@
 		[timer invalidate];
 		timer = NULL;
 	}
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	[game setupBoard];
+	[self startTimer];
+	[self setNeedsDisplay];
 }
 
 

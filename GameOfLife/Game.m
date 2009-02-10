@@ -27,7 +27,7 @@
 	
 	for ( x = 0; x < cell_cols; x++ ) {
 		for ( y = 0; y < cell_rows; y++ ) {
-			cells[ x ][ y ] = arc4random() % 11 == 0;
+			cells[ x ][ y ] = arc4random() % 15	== 0;
 		}
 	}
 }
@@ -82,7 +82,8 @@
 			bool wasAlive = cells[ y ][ x ];
 
 			bool nowAlive = ( ( ( !wasAlive ) && ( aliveNeighbors == 3 ) ) ||
-							 ( ( wasAlive ) && ( ( aliveNeighbors == 2 )   || ( aliveNeighbors == 3 ) ) ) );
+							  ( ( wasAlive ) && ( ( aliveNeighbors == 2 )  || ( aliveNeighbors == 3 ) ) ) );
+			
 			if ( ( !dirty ) && ( nowAlive != wasAlive ) ) {
 				dirty = YES;
 			}
@@ -103,7 +104,14 @@
 	CGRect rect = CGRectMake( x * cell_width, y * cell_height, cell_width - 1, cell_height - 1 );
 	
 	[[UIColor yellowColor] setFill];
-	UIRectFill(rect);
+	UIRectFill( rect );
+	
+/*
+	NSString *path = [[NSString alloc] initWithFormat:@"bug.png"];
+	UIImage *bug = [UIImage imageNamed:path];
+	[bug drawInRect:rect];
+	[path release];
+*/
 }
 
 - (void)dealloc {
